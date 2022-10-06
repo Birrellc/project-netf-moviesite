@@ -19,19 +19,18 @@ const Header = (props: Props) => {
       } else {
         setIsScrolled(false);
       }
-
-      // listen for scroll event
-      window.addEventListener('scroll', handleScroll);
-      // cleanup function
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
+    };
+    // listen for scroll event
+    window.addEventListener('scroll', handleScroll);
+    // cleanup function
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   return (
     <div>
-      <header className={`${isScrolled && 'bg-[#141414'}`}>
+      <header className={`${isScrolled && 'bg-[#141414]'}`}>
         {/* left side */}
         <nav className='flex items-center space-x-2 md:space-x-10'>
           <div>
