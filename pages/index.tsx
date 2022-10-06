@@ -4,8 +4,32 @@ import Header from '../components/Header';
 import Banner from '../components/Banner';
 import styles from '../styles/Home.module.css';
 import requests from '../utils/requests';
+import { Movie } from '../typings';
 
-const Home = () => {
+interface Props {
+  // netflixOriginals of type Movie - typings.d.ts
+  netflixOriginals: Movie[];
+  trendingNow: Movie[];
+  topRated: Movie[];
+  actionMovies: Movie[];
+  comedyMovies: Movie[];
+  horrorMovies: Movie[];
+  romanceMovies: Movie[];
+  documentaries: Movie[];
+}
+
+const Home = ({
+  netflixOriginals,
+  actionMovies,
+  comedyMovies,
+  documentaries,
+  horrorMovies,
+  romanceMovies,
+  topRated,
+  trendingNow,
+}: Props) => {
+  console.log(netflixOriginals);
+
   return (
     <div className='relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010811]'>
       <Head>
