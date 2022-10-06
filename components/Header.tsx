@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import netflixLogo from '../assets/netflixLogo.png';
+import accountImage from '../assets/accountImage.png';
 import { BellIcon, SearchIcon } from '@heroicons/react/solid';
+import Link from 'next/link';
 
 type Props = {};
 
@@ -10,13 +12,15 @@ const Header = (props: Props) => {
       <header>
         {/* left side */}
         <nav className='flex items-center space-x-2 md:space-x-10'>
-          <Image
-            src={netflixLogo}
-            alt='netflix logo'
-            height='50'
-            width='50'
-            objectFit='contain'
-          ></Image>
+          <div>
+            <Image
+              src={netflixLogo}
+              alt='netflix logo'
+              height='50'
+              width='50'
+              objectFit='contain'
+            />
+          </div>
 
           <ul className='hidden space-x-4 md:flex'>
             <li className='nav-link'>Home</li>
@@ -28,10 +32,18 @@ const Header = (props: Props) => {
         </nav>
 
         {/* right side */}
-        <div>
+        <div className='flex items-center space-x-4 text-sm font-light'>
           <SearchIcon className='hidden sm:inline w-6 h-6' />
           <p className='hidden lg:inline'>Kids</p>
           <BellIcon className='h-6 w-6' />
+          <Link href='/account'>
+            <div>
+              <Image
+                src={accountImage}
+                className='cursor-pointer rounded space-x-4'
+              />
+            </div>
+          </Link>
         </div>
       </header>
     </div>
