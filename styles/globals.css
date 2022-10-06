@@ -2,10 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+/* html, body, heading etc */
+@layer base {
+  body {
+    @apply bg-[#141414] text-white;
+  }
+}
+
+/*custom classes*/
+@layer components {
+  .nav-link {
+    @apply cursor-pointer text-sm font-light text-[#e5e5e5] transition duration-500 hover:text-[#b3b3b3];
+  }
 }
