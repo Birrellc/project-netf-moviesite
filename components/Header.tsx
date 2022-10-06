@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+
 import Image from 'next/image';
 import netflixLogo from '../assets/netflixLogo.png';
 import accountImage from '../assets/accountImage.png';
@@ -7,9 +9,29 @@ import Link from 'next/link';
 type Props = {};
 
 const Header = (props: Props) => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // single mount
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+
+      // listen for scroll event
+      window.addEventListener('scroll', handleScroll);
+      // cleanup function
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    };
+  }, []);
+
   return (
     <div>
-      <header>
+      <header className={`${isScrolled && 'bg-[#141414'}`}>
         {/* left side */}
         <nav className='flex items-center space-x-2 md:space-x-10'>
           <div>
