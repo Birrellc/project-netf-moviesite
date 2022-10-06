@@ -44,11 +44,11 @@ const Header = (props: Props) => {
           </div>
 
           <ul className='hidden space-x-4 md:flex'>
-            <li className='nav-link'>Home</li>
-            <li className='nav-link'>TV Shows</li>
-            <li className='nav-link'>Movies</li>
-            <li className='nav-link'>New & Popular</li>
-            <li className='nav-link'>My List</li>
+            <li className='navLink'>Home</li>
+            <li className='navLink'>TV Shows</li>
+            <li className='navLink'>Movies</li>
+            <li className='navLink'>New & Popular</li>
+            <li className='navLink'>My List</li>
           </ul>
         </nav>
 
