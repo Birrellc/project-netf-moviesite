@@ -41,7 +41,7 @@ const Home = ({
       <Header />
       <main>
         {/* Banner */}
-        <Banner />
+        <Banner netflixOriginals={netflixOriginals} />
         <section>
           {/* Movie Rows */}
           {/* Movie Rows */}
