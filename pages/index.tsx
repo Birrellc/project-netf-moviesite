@@ -5,6 +5,7 @@ import Banner from '../components/Banner';
 import styles from '../styles/Home.module.css';
 import requests from '../utils/requests';
 import { Movie } from '../typings';
+import Row from '../components/Row';
 
 interface Props {
   // netflixOriginals of type Movie - typings.d.ts
@@ -44,9 +45,14 @@ const Home = ({
         <Banner netflixOriginals={netflixOriginals} />
         <section>
           {/* Movie Rows */}
-          {/* Movie Rows */}
-          {/* Movie Rows */}
-          {/* Movie Rows */}
+          <Row title='Top Rated' movies={topRated} />
+          <Row title='Trending Now' movies={trendingNow} />
+          {/* MyList Component */}
+          <Row title='Action/Thrillers' movies={actionMovies} />
+          <Row title='Comedies' movies={comedyMovies} />
+          <Row title='Horror' movies={horrorMovies} />
+          <Row title='Romance' movies={romanceMovies} />
+          <Row title='Docmentaries' movies={documentaries} />
         </section>
       </main>
       {/* Modal */}
