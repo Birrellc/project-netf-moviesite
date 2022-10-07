@@ -24,6 +24,6 @@
   }
 
   .chevron {
-    @apply absolute w-9 h-9 top-0 bottom-0 left-2 z-30 m-auto cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100
+    @apply absolute w-9 h-9 top-0 bottom-0 z-30 m-auto cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100
   }
 }
