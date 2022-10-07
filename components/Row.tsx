@@ -36,6 +36,7 @@ const Row = ({ title, movies }: Props) => {
       </h2>
       <div className='group relative md:-ml-2'>
         <ChevronLeftIcon
+          // when scroll is at the start(default position hide left chevron)
           className={`chevron left-2 ${!isMoved && 'hidden'}`}
           onClick={() => clickHandler('left')}
         />
