@@ -6,6 +6,7 @@ import styles from '../styles/Home.module.css';
 import requests from '../utils/requests';
 import { Movie } from '../typings';
 import Row from '../components/Row';
+import useAuth from '../customHooks/useAuth';
 
 interface Props {
   // netflixOriginals of type Movie - typings.d.ts
@@ -29,7 +30,9 @@ const Home = ({
   topRated,
   trendingNow,
 }: Props) => {
-  console.log(netflixOriginals);
+  const { logout, loading } = useAuth();
+
+  if (loading) return null;
 
   return (
     <div className='relative h-screen bg-gradient-to-b'>

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import netflixLoginBg from '../assets/netflixLoginBg.jpg';
 import netflixLogo from '../assets/netflixLogo.png';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import useAuth from '../customHooks/useAuth';
 
 interface Inputs {
   email: string;
@@ -12,6 +13,8 @@ interface Inputs {
 
 const login = () => {
   const [login, setLogin] = useState(false);
+  // destructure off signIn and signUp from useAuth()
+  const { signIn, signUp } = useAuth();
 
   const {
     register,
@@ -19,7 +22,18 @@ const login = () => {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  // const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  // destructure email/password from data
+  const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
+    // check if login selected and not signup
+    if (login) {
+      await signIn(email, password);
+    }
+    // if login - false (sign up button clicked instead)
+    else {
+      await signUp(email, password);
+    }
+  };
 
   return (
     <div className='relative flex h-screen w-screen flex-col bg-black md:items-center md:justify-center md:bg-transparent'>
@@ -60,7 +74,7 @@ const login = () => {
             />
             {errors.email && (
               <span className='text-red-500 italic font-semibold'>
-                Invalid Email
+                Invalid Email.
               </span>
             )}
           </label>
@@ -73,7 +87,7 @@ const login = () => {
             />
             {errors.password && (
               <span className='text-red-500 italic font-semibold'>
-                Invalid Password
+                Your password must contain between 4 and 60 characters.
               </span>
             )}
           </label>
@@ -82,11 +96,16 @@ const login = () => {
         <button
           type='submit'
           className='w-full rounded bg-[#e50914] py-3 font-semibold'
+          onClick={() => setLogin(true)}
         >
           Login
         </button>
 
-        <button type='submit' className='w-full text-white hover:underline'>
+        <button
+          type='submit'
+          className='w-full text-white hover:underline'
+          onClick={() => setLogin(false)}
+        >
           Sign Up
         </button>
       </form>
