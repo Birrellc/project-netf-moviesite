@@ -11,7 +11,7 @@ interface Inputs {
   password: string;
 }
 
-const login = () => {
+const Login = () => {
   const [login, setLogin] = useState(false);
   // destructure off signIn and signUp from useAuth()
   const { signIn, signUp } = useAuth();
@@ -70,7 +70,15 @@ const login = () => {
               type='email'
               placeholder='Your Email'
               className='input'
-              {...register('email', { required: true })}
+              {...register('email', {
+                required: 'Email is required',
+                pattern: {
+                  value:
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                  message: 'Please enter a valid email',
+                },
+              })}
+              // {...register('email', { required: true })}
             />
             {errors.email && (
               <span className='text-red-500 italic font-semibold'>
@@ -113,4 +121,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;
