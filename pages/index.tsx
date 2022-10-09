@@ -2,7 +2,9 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Header from '../components/Header';
 import Banner from '../components/Banner';
-import styles from '../styles/Home.module.css';
+import Modal from '../components/Modal';
+import { useRecoilValue } from 'recoil';
+import { modalState } from '../atoms/modalAtom';
 import requests from '../utils/requests';
 import { Movie } from '../typings';
 import Row from '../components/Row';
@@ -31,6 +33,7 @@ const Home = ({
   trendingNow,
 }: Props) => {
   const { logout, loading } = useAuth();
+  const showModal = useRecoilValue(modalState);
 
   if (loading) return null;
 
@@ -59,6 +62,7 @@ const Home = ({
         </section>
       </main>
       {/* Modal */}
+      {showModal && <Modal />}
     </div>
   );
 };
@@ -87,7 +91,7 @@ export const getServerSideProps = async () => {
     fetch(requests.fetchDocumentaries).then((res) => res.json()),
   ]);
 
-  // need to return probs for serverside rendering
+  // need to return props for serverside rendering
   // https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props
   return {
     props: {
