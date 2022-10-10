@@ -27,3 +27,8 @@ export interface Format {
     | 'Trailer'
     | 'Teaser';
 }
+
+export interface Genre {
+  id: number;
+  name: string;
+}
