@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import MuiModal from '@mui/material/Modal';
 import { XIcon } from '@heroicons/react/solid';
 import { Movie, Format, Genre } from '../typings';
+import ReactPlayer from 'react-player/lazy';
 
 type Props = {};
 
@@ -66,6 +67,16 @@ const Modal = (props: Props) => {
         >
           <XIcon className='h-7 w-7 ' />
         </button>
+
+        <div>
+          <ReactPlayer
+            url={`https://www.youtube.com/watch?v=${trailer}`}
+            width='100%'
+            height='100%'
+            style={{ position: 'absolute', top: '0', left: '0' }}
+            playing
+          />
+        </div>
       </>
     </MuiModal>
   );
