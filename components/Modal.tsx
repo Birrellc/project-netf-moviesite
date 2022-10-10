@@ -2,9 +2,11 @@ import { useRecoilState } from 'recoil';
 import { modalState, movieState } from '../atoms/modalAtom';
 import { useEffect, useState } from 'react';
 import MuiModal from '@mui/material/Modal';
-import { XIcon } from '@heroicons/react/solid';
+import { XIcon, ThumbUpIcon, PlusIcon } from '@heroicons/react/solid';
 import { Movie, Format, Genre } from '../typings';
 import ReactPlayer from 'react-player/lazy';
+import { FaPlay } from 'react-icons/fa';
+import { VolumeOffIcon } from '@heroicons/react/solid';
 
 type Props = {};
 
@@ -59,7 +61,11 @@ const Modal = (props: Props) => {
   };
 
   return (
-    <MuiModal open={showModal} onClose={closeHandler}>
+    <MuiModal
+      open={showModal}
+      onClose={closeHandler}
+      className='fixed !top-10 left-0 right-0 z-100 mx-auto w-full max-w-4xl overflow-hidden overflow-y-scroll rounded-md scrollbar-hide'
+    >
       <>
         <button
           onClick={closeHandler}
@@ -68,14 +74,31 @@ const Modal = (props: Props) => {
           <XIcon className='h-7 w-7 ' />
         </button>
 
-        <div>
+        <div className='relative pt-[60%]'>
+          {/* responsive player - https://github.com/cookpete/react-player#responsive-player */}
           <ReactPlayer
             url={`https://www.youtube.com/watch?v=${trailer}`}
             width='100%'
             height='100%'
             style={{ position: 'absolute', top: '0', left: '0' }}
-            playing
+            // playing
           />
+          <div className='absolute bottom-8 flex w-full items-center justify-between px-12'>
+            <div className='flex space-x-2'>
+              <button className='flex items-center gap-x-2 rounded bg-white px-2 text-md font-semibold md:text-xl text-black transition hover:bg-[#e5e5e5]'>
+                <FaPlay className='h-4 w-4 text-black ' />
+                Play
+              </button>
+
+              <button className='modalBtn'>
+                <PlusIcon />
+              </button>
+
+              <button className='modalBtn'>
+                <ThumbUpIcon className='h-4 w-4' />
+              </button>
+            </div>
+          </div>
         </div>
       </>
     </MuiModal>
