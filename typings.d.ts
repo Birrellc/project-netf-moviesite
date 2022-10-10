@@ -16,3 +16,14 @@ export interface Movie {
   vote_average: number;
   vote_count: number;
 }
+
+// used to play trailers in movie modals
+export interface Format {
+  type:
+    | 'Bloopers'
+    | 'Featurette'
+    | 'Behind the Scenes'
+    | 'Clip'
+    | 'Trailer'
+    | 'Teaser';
+}
