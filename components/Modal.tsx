@@ -100,6 +100,36 @@ const Modal = (props: Props) => {
             </div>
           </div>
         </div>
+
+        <div className='flex space-x-14 rounded-b-md bg-[#191919] px-10 py-8'>
+          <div className='space-y-4 text-lg'>
+            <div className='flex items-center space-x-2 text-sm'>
+              <p className='font-semibold text-green-400'>
+                {movie!.vote_average * 10}% Match
+              </p>
+              <p className='font-light'>
+                {movie?.release_date || movie?.first_air_date}
+              </p>
+              <div className='flex h-4 item-center justify-center rounded border border-white/50 px-2 text-xs'>
+                HD
+              </div>
+            </div>
+
+            <div className='flex flex-col gap-x-1- gap-y-5 font-light md:flex-row'>
+              <p className='w-[80%]'>{movie?.overview}</p>
+              <div className='flex flex-col space-y-3 text-sm'>
+                <div>
+                  <p className='text-[gray]'>Genres</p>
+                  {genre.map((genre) => genre.name).join(', ')}
+                </div>
+                <div>
+                  <span className='text-[gray]'>Language</span>
+                  {movie?.original_language}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </>
     </MuiModal>
   );
