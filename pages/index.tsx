@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Header from '../components/Header';
 import Banner from '../components/Banner';
 import Modal from '../components/Modal';
+import SubPlans from '../components/SubPlans';
 import { useRecoilValue } from 'recoil';
 import { modalState } from '../atoms/modalAtom';
 import requests from '../utils/requests';
@@ -39,7 +40,7 @@ const Home = ({
   if (loading || subscription === null) return null;
 
   // content protection
-  if (!subscription) return <div>Plans</div>;
+  if (!subscription) return <SubPlans />;
 
   return (
     <div className='relative h-screen bg-gradient-to-b'>
