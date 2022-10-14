@@ -1,13 +1,17 @@
 import { CheckIcon } from '@heroicons/react/solid';
+import { Product } from '@stripe/firestore-stripe-payments';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import netflixLogo from '../assets/netflixLogo.png';
 import useAuth from '../customHooks/useAuth';
 
-type Props = {};
+// Product[] - type in stripe/firestore package
+interface Props {
+  products: Product[];
+}
 
-const SubPlans = (props: Props) => {
+const SubPlans = ({ products }: Props) => {
   //
   const { logout } = useAuth();
 
@@ -56,13 +60,15 @@ const SubPlans = (props: Props) => {
 
         <div className='mt-4 flex flex-col space-y-4'>
           <div className='flex w-full items-center justify-end self-end'>
-            {/* plan */}
-            <div className='planContainer'>Standard</div>
-            <div className='planContainer'>Standard</div>
-            <div className='planContainer'>Standard</div>
+            {products.map((product) => (
+              <div className='planContainer' key={product.id}>
+                {product.name}
+              </div>
+            ))}
           </div>
 
           {/* Table */}
+
           <button>Subscribe</button>
         </div>
       </main>
