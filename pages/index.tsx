@@ -24,7 +24,7 @@ interface Props {
   romanceMovies: Movie[];
   documentaries: Movie[];
   // import type interface from firebase-stripe package
-  products: Product;
+  products: Product[];
 }
 
 const Home = ({
