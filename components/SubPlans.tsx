@@ -36,6 +36,36 @@ const SubPlans = (props: Props) => {
           Sign Out
         </button>
       </header>
+      <main className='mx-auto max-w-5xl px-5 pt-32 pb-12 transition-all md:px-10'>
+        <h1 className='mb-4 text-3xl font-semibold'>
+          Choose your subscription plan
+        </h1>
+        <ul>
+          <li className='flex items-center gap-x-2 text-lg'>
+            <CheckIcon className='h-7 w-7 text-[#E50914]' /> Ad-free viewing.
+          </li>
+          <li className='flex items-center gap-x-2 text-lg'>
+            <CheckIcon className='h-7 w-7 text-[#E50914]' /> Personalized
+            recommendations.
+          </li>
+          <li className='flex items-center gap-x-2 text-lg'>
+            <CheckIcon className='h-7 w-7 text-[#E50914]' /> Change or cancel
+            your plan anytime.
+          </li>
+        </ul>
+
+        <div className='mt-4 flex flex-col space-y-4'>
+          <div className='flex w-full items-center justify-end self-end'>
+            {/* plan */}
+            <div className='planContainer'>Standard</div>
+            <div className='planContainer'>Standard</div>
+            <div className='planContainer'>Standard</div>
+          </div>
+
+          {/* Table */}
+          <button>Subscribe</button>
+        </div>
+      </main>
     </div>
   );
 };
