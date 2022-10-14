@@ -10,6 +10,8 @@ import requests from '../utils/requests';
 import { Movie } from '../typings';
 import Row from '../components/Row';
 import useAuth from '../customHooks/useAuth';
+import { getProducts, Product } from '@stripe/firestore-stripe-payments';
+import payments from '../lib/stripe';
 
 interface Props {
   // netflixOriginals of type Movie - typings.d.ts
@@ -21,6 +23,8 @@ interface Props {
   horrorMovies: Movie[];
   romanceMovies: Movie[];
   documentaries: Movie[];
+  // import type interface from firebase-stripe package
+  products: Product;
 }
 
 const Home = ({
@@ -32,6 +36,7 @@ const Home = ({
   romanceMovies,
   topRated,
   trendingNow,
+  products,
 }: Props) => {
   const { logout, loading } = useAuth();
   const showModal = useRecoilValue(modalState);
@@ -40,7 +45,7 @@ const Home = ({
   if (loading || subscription === null) return null;
 
   // content protection
-  if (!subscription) return <SubPlans />;
+  if (!subscription) return <SubPlans products={products} />;
 
   return (
     <div className='relative h-screen bg-gradient-to-b'>
@@ -75,6 +80,14 @@ const Home = ({
 export default Home;
 
 export const getServerSideProps = async () => {
+  // get products from firebase/stripe
+  const products = await getProducts(payments, {
+    includePrices: true,
+    activeOnly: true,
+  })
+    .then((res) => res)
+    .catch((error) => console.log(error.message));
+
   const [
     netflixOriginals,
     trendingNow,
@@ -109,6 +122,7 @@ export const getServerSideProps = async () => {
       horrorMovies: horrorMovies.results,
       romanceMovies: romanceMovies.results,
       documentaries: documentaries.results,
+      products,
     },
   };
 };
